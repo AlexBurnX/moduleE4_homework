@@ -39,13 +39,6 @@ class DevicePropers extends Device {
         console.log(`• color = ${this.color}`);
         console.groupEnd();
     }
-    calcSumPower() {
-        let sum = 0;
-        if (this.work) {
-            return this.power;
-        }
-        return sum;
-    }
 }
 
 const lamp = new DevicePropers('lamp', 10, 500, 'silver');
@@ -61,7 +54,9 @@ computer.electroConnect(true);
 let sumPower = 0;
 for (let device of arrayDevices) {
     device.getInfo();
-    sumPower += device.calcSumPower();
+    if (device.work) {
+        sumPower += device.power;
+    }
 }
 
 console.log(`\n=== Total electricity consumed: ${sumPower} W ===`);
